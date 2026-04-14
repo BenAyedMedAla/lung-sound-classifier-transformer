@@ -9,3 +9,8 @@ my-env/
 # Ignore Python cache artifacts
 __pycache__/
 *.pyc
+
+# Local environment variables
+.env
+.env.*
+!.env.example

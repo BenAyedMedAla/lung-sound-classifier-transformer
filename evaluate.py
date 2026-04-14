@@ -2,13 +2,33 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 import numpy as np
-from transformers import ASTFeatureExtractor
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
 import os
 import argparse
 import gc
+from pathlib import Path
+
+
+def load_local_env():
+    env_path = Path(__file__).resolve().parent / ".env"
+    if not env_path.exists():
+        return
+
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        print("[INFO] .env found but python-dotenv is not installed. Skipping .env loading.")
+        return
+
+    load_dotenv(dotenv_path=env_path, override=False)
+    print(f"[INFO] Loaded environment from {env_path}")
+
+
+load_local_env()
+
+from transformers import ASTFeatureExtractor
 
 # --- MODÜLER İMPORTLAR ---
 from src.dataset import ASTDataset

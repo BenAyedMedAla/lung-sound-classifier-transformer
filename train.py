@@ -2,11 +2,27 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, WeightedRandomSampler
 import numpy as np
-from transformers import ASTFeatureExtractor
 from tqdm import tqdm
 import os
 import argparse
+from pathlib import Path
 from sklearn.metrics import confusion_matrix
+from dotenv import load_dotenv
+
+def load_local_env():
+    env_path = Path(__file__).resolve().parent / ".env"
+    if not env_path.exists():
+        return
+
+    
+    
+
+    load_dotenv(dotenv_path=env_path, override=False)
+
+
+load_local_env()
+
+from transformers import ASTFeatureExtractor
 
 
 from src.dataset import ASTDataset
