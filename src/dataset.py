@@ -14,7 +14,7 @@ class ASTDataset(Dataset):
         return len(self.y)
 
     def __getitem__(self, idx):
-        wav = self.X[idx]
+        wav = np.asarray(self.X[idx], dtype=np.float32)
 
         # AST Augmentation (Sadece Eğitim Sırasında)
         if self.train:
@@ -24,7 +24,7 @@ class ASTDataset(Dataset):
             # Hafif Gaussian Noise
             if np.random.random() < 0.5:
                 # Noise seviyesi: 0.0001
-                wav = wav + np.random.normal(0, 0.0001, wav.shape) 
+                wav = wav + np.random.normal(0, 0.0001, wav.shape).astype(np.float32)
 
         # Processor: Audio -> Spectrogram -> Patches
         # Sampling rate 16kHz sabittir

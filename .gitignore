@@ -2,3 +2,10 @@
 data/
 
 my-env/
+
+# Ignore generated preprocessed arrays
+*.npz
+
+# Ignore Python cache artifacts
+__pycache__/
+*.pyc
